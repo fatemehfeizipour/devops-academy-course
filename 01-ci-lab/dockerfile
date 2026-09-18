@@ -1,0 +1,9 @@
+FROM public.ecr.aws/lambda/python:3.14-experimental.2026.09.04.00-x86_64
+
+COPY requirements.txt .
+
+RUN pip install -r requirements.txt
+
+COPY app/calculator.py ${LAMBDA_TASK_ROOT}/lambda_function.py
+
+CMD ["lambda_function.lambda_handler"]
